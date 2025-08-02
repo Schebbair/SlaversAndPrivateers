@@ -1,0 +1,92 @@
+[
+
+    {
+        "pregunta": "¿Qué país es conocido como la tierra del sol naciente?",
+        "opciones": ["China", "Japón", "Corea del Sur", "Vietnam"],
+        "respuesta_correcta": 1
+    },
+    {
+        "pregunta": "¿Qué país inventó la pólvora?",
+        "opciones": ["China", "India", "Grecia", "Egipto"],
+        "respuesta_correcta": 0
+    },
+    {
+        "pregunta": "¿Qué inventor creó la bombilla incandescente práctica?",
+        "opciones": ["Nikola Tesla", "Thomas Edison", "Alexander Graham Bell", "Michael Faraday"],
+        "respuesta_correcta": 1
+    },
+    {
+        "pregunta": "¿En qué país se encuentra el desierto de Atacama?",
+        "opciones": ["Perú", "Bolivia", "Argentina", "Chile"],
+        "respuesta_correcta": 3
+    },
+    {
+        "pregunta": "¿Cuál es la capital de Jamaica?",
+        "opciones": ["Kingston", "Mogadiscio", "Gaborone", "Bridgetown"],
+        "respuesta_correcta": 0
+    },
+
+
+
+
+    {
+        "pregunta": "¿Cuál es la principal fuente de energía del ciclo del agua?",
+        "opciones": ["La gravedad", "El viento", "La radiación solar", "La presión atmosférica"],
+        "respuesta_correcta": 2
+    },
+    {
+        "pregunta": "¿Qué país ganó la Copa Mundial de la FIFA en 1966?",
+        "opciones": ["Brasil", "Inglaterra", "Alemania", "Italia"],
+        "respuesta_correcta": 1
+    },
+    {
+        "pregunta": "¿Cuál es el nombre del químico que creó la tabla periódica moderna?",
+        "opciones": ["Dmitri Mendeléyev", "John Dalton", "Marie Curie", "Antoine Lavoisier"],
+        "respuesta_correcta": 0
+    },
+    {
+        "pregunta": "¿Cuál es la fórmula química del ácido sulfúrico?",
+        "opciones": ["H2SO3", "H2SO4", "HSO4", "H2S"],
+        "respuesta_correcta": 1
+    },
+    {
+        "pregunta": "¿Cuál fue la capital del Imperio Azteca?",
+        "opciones": ["Tenochtitlán", "Texcoco", "Cholula", "Tlaxcala"],
+        "respuesta_correcta": 0
+    },
+
+
+
+
+    {
+        "pregunta": "¿En qué año se descubrió la penicilina?",
+        "opciones": ["1905", "1935", "1912", "1928"],
+        "respuesta_correcta": 3
+    },
+    {
+        "pregunta": "¿Quién fue el primer matemático en usar el símbolo ∞ para el infinito?",
+        "opciones": ["John Wallis", "Descartes", "Newton", "Euler"],
+        "respuesta_correcta": 0
+    },
+    {
+        "pregunta": "¿Quién compuso la ópera 'El anillo del nibelungo'?",
+        "opciones": ["Giuseppe Verdi ", "Gustav Mahler", "Richard Wagner", "Igor Stravinsky"],
+        "respuesta_correcta": 0
+    },
+
+
+    {
+        "pregunta": "¿Cuál es la longitud de onda aproximada de la luz visible en nanómetros?",
+        "opciones": ["100-200", "200-300", "400-700", "800-1000"],
+        "respuesta_correcta": 2
+    },
+    {
+        "pregunta": "¿Cuál es la densidad media aproximada de la corteza terrestre en g/cm³?",
+        "opciones": ["3.3", "4.5", "2.7", "5.1"],
+        "respuesta_correcta": 2
+    }
+]
+
+
+
+
