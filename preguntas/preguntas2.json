@@ -1,94 +1,94 @@
 [
     
     {
-        "text": "¿Qué científico formuló la ley de la gravitación universal?",
-        "options": ["Galileo", "Newton", "Einstein", "Kepler"],
-        "correct": 1
+        "pregunta": "¿Qué científico formuló la ley de la gravitación universal?",
+        "opciones": ["Galileo", "Newton", "Einstein", "Kepler"],
+        "respuesta_correcta": 1
     },
 
     {
-        "text": "¿Cuál es el idioma más hablado del mundo por número de hablantes nativos?",
-        "options": ["Inglés", "Chino mandarín", "Hindi", "Español"],
-        "correct": 1
+        "pregunta": "¿Cuál es el idioma más hablado del mundo por número de hablantes nativos?",
+        "opciones": ["Inglés", "Chino mandarín", "Hindi", "Español"],
+        "respuesta_correcta": 1
     },
     {
-        "text": "¿Qué elemento químico tiene el símbolo Fe?",
-        "options": ["Flúor", "Fósforo", "Hierro", "Francio"],
-        "correct": 2
+        "pregunta": "¿Qué elemento químico tiene el símbolo Fe?",
+        "opciones": ["Flúor", "Fósforo", "Hierro", "Francio"],
+        "respuesta_correcta": 2
     },
     {
-        "text": "¿Cuál es el nombre del satélite natural de la Tierra?",
-        "options": ["Europa", "La Luna", "Ío", "Titania"],
-        "correct": 1
+        "pregunta": "¿Cuál es el nombre del satélite natural de la Tierra?",
+        "opciones": ["Europa", "La Luna", "Ío", "Titania"],
+        "respuesta_correcta": 1
     },
     {
-        "text": "¿Quién escribió la novela '1984'?",
-        "options": ["George Orwell", "Aldous Huxley", "Ray Bradbury", "Philip K. Dick"],
-        "correct": 0
-    },
-
-
-
-
-
-    {
-        "text": "¿Cuál es el desierto más grande del mundo?",
-        "options": ["Sahara", "Gobi", "Antártico", "Kalahari"],
-        "correct": 2
-    },
-    {
-        "text": "¿Quién fue el autor de 'Cien años de soledad'?",
-        "options": ["Pablo Neruda", "Mario Vargas Llosa", "Gabriel García Márquez", "Julio Cortázar"],
-        "correct": 2
-    },
-    {
-        "text": "¿Qué filósofo escribió 'La crítica de la razón pura'?",
-        "options": ["Kant", "Hume", "Descartes", "Locke"],
-        "correct": 0
-    },
-    {
-        "text": "¿Qué país ganó el Mundial de Fútbol en 2018?",
-        "options": ["Alemania", "Brasil", "Francia", "Argentina"],
-        "correct": 2
-    },
-    {
-    "text": "¿Cuál es el nombre de la red neuronal utilizada principalmente para imágenes?",
-    "options": ["RNN", "LSTM", "CNN", "BERT"],
-    "correct": 2
+        "pregunta": "¿Quién escribió la novela '1984'?",
+        "opciones": ["George Orwell", "Aldous Huxley", "Ray Bradbury", "Philip K. Dick"],
+        "respuesta_correcta": 0
     },
 
 
 
 
 
-
-
     {
-        "text": "¿Cuál es el nombre del cofundador de Apple junto con Steve Jobs?",
-        "options": ["Tim Cook", "Wozniak", "Bezos", "Gates"],
-        "correct": 1
+        "pregunta": "¿Cuál es el desierto más grande del mundo?",
+        "opciones": ["Sahara", "Gobi", "Antártico", "Kalahari"],
+        "respuesta_correcta": 2
     },
     {
-        "text": "¿Cuál es el principal neurotransmisor excitador en el cerebro?",
-        "options": ["Glutamato", "GABA", "Serotonina", "Dopamina"],
-        "correct": 0
+        "pregunta": "¿Quién fue el autor de 'Cien años de soledad'?",
+        "opciones": ["Pablo Neruda", "Mario Vargas Llosa", "Gabriel García Márquez", "Julio Cortázar"],
+        "respuesta_correcta": 2
     },
     {
-        "text": "¿Qué autor escribió 'La montaña mágica'?",
-        "options": ["Thomas Mann", "Franz Kafka", "Hermann Hesse", "Robert Musil"],
-        "correct": 0
+        "pregunta": "¿Qué filósofo escribió 'La crítica de la razón pura'?",
+        "opciones": ["Kant", "Hume", "Descartes", "Locke"],
+        "respuesta_correcta": 0
+    },
+    {
+        "pregunta": "¿Qué país ganó el Mundial de Fútbol en 2018?",
+        "opciones": ["Alemania", "Brasil", "Francia", "Argentina"],
+        "respuesta_correcta": 2
+    },
+    {
+    "pregunta": "¿Cuál es el nombre de la red neuronal utilizada principalmente para imágenes?",
+    "opciones": ["RNN", "LSTM", "CNN", "BERT"],
+    "respuesta_correcta": 2
+    },
+
+
+
+
+
+
+
+    {
+        "pregunta": "¿Cuál es el nombre del cofundador de Apple junto con Steve Jobs?",
+        "opciones": ["Tim Cook", "Wozniak", "Bezos", "Gates"],
+        "respuesta_correcta": 1
+    },
+    {
+        "pregunta": "¿Cuál es el principal neurotransmisor excitador en el cerebro?",
+        "opciones": ["Glutamato", "GABA", "Serotonina", "Dopamina"],
+        "respuesta_correcta": 0
+    },
+    {
+        "pregunta": "¿Qué autor escribió 'La montaña mágica'?",
+        "opciones": ["Thomas Mann", "Franz Kafka", "Hermann Hesse", "Robert Musil"],
+        "respuesta_correcta": 0
     },
 
 
     {
-        "text": "¿Qué compositor ruso escribió 'La consagración de la primavera'?",
-        "options": ["Stravinsky", "Rimsky-Korsakov", "Tchaikovsky", "Prokofiev"],
-        "correct": 0
+        "pregunta": "¿Qué compositor ruso escribió 'La consagración de la primavera'?",
+        "opciones": ["Stravinsky", "Rimsky-Korsakov", "Tchaikovsky", "Prokofiev"],
+        "respuesta_correcta": 0
     },
     {   
-        "text": "¿Cuál de las siguientes afirmaciones sobre la hipótesis endosimbiótica es más consistentemente respaldada por evidencia genética y bioquímica moderna?",
-        "options": ["Las mitocondrias evolucionaron de arqueas que desarrollaron una membrana interna especializada", "Los cloroplastos provienen de bacterias fotosintéticas del tipo cianobacteria", "El núcleo celular surgió por fusión de múltiples bacterias en un organismo protoeucariota", "La simbiosis mitocondrial ocurrió después de la aparición del aparato de Golgi"],
-        "correct": 1
+        "pregunta": "¿Cuál de las siguientes afirmaciones sobre la hipótesis endosimbiótica es más consistentemente respaldada por evidencia genética y bioquímica moderna?",
+        "opciones": ["Las mitocondrias evolucionaron de arqueas que desarrollaron una membrana interna especializada", "Los cloroplastos provienen de bacterias fotosintéticas del tipo cianobacteria", "El núcleo celular surgió por fusión de múltiples bacterias en un organismo protoeucariota", "La simbiosis mitocondrial ocurrió después de la aparición del aparato de Golgi"],
+        "respuesta_correcta": 1
     }
 
 

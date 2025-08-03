@@ -15,8 +15,8 @@ body {
     padding-left: 50px;
     padding-right: 50px;
     text-align: center;
-    max-width: 800px;
-    
+    max-width: 1200px;
+    width: 90%;
 }
 
 .imagenes_container{
@@ -92,8 +92,9 @@ h1 {
     border-radius: 10px;
     padding: 30px;
     margin-top: 40px;
-    height: 250px;
-    width: 600px;
+    min-height: 250px; 
+    width: 100%;
+    min-width: 1200px;
     display: flex; 
     flex-direction: column;
     justify-content: center;
@@ -201,18 +202,21 @@ h2 {
 }
 
 /*RULETA*/
-.ruleta-container {
+.ruleta_container_class {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    border-radius: 50%; 
     width: 500px;
     height: 500px;
-    z-index: 100;
+    z-index: 5;
+    display: none;
 }
 
-.ruleta-container.oculta {
-    display: none;
+.ruleta_container_class.visible {
+    display: block;
 }
 
 .ruleta-giratoria {
@@ -222,56 +226,40 @@ h2 {
     position: relative;
     overflow: hidden;
     transition: transform 4s cubic-bezier(0.25, 0.1, 0.25, 1);
-    border: 5px solid gold;
+    border: 10px solid gold;
     box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    justify-content: center;
+    align-items: center; 
+}
+.ruleta-giratoria img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@keyframes girar-ruleta {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .ruleta-giratoria.girando {
     animation: girar-ruleta 3s linear infinite;
-}
-
-.ruleta-giratoria.finalizando-giro {
-    transition: transform 6s cubic-bezier(0.3, 0.8, 0.3, 1);
-}
-
-.ruleta-seccion {
-    position: absolute;
-    width: 50%;
-    height: 50%;
-    transform-origin: 100% 100%;
-    border: 1px solid black;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2.5em;
-    font-weight: bold;
-    color: white;
+    /* '3s' es la duración del giro, 'linear' es la velocidad, e 'infinite' hace que no pare */
 }
 
 .ruleta-puntero {
     position: absolute;
-    top: -20px;
+    top: -20px; /* Ajústalo para que esté justo por encima de la ruleta */
     left: 50%;
     width: 0;
     height: 0;
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
-    border-bottom: 25px solid gold;
+    border-bottom: 25px solid rgb(251, 9, 9); /* Esto crea la forma de triángulo */
     transform: translateX(-50%);
-    z-index: 101;
-}
-
-.resultado-ruleta {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 102;
-    font-size: 3em;
-    color: gold;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 10px 20px;
-    border-radius: 10px;
-    display: none;
+    z-index: 6; /* Asegúrate de que esté por encima de la ruleta */
 }

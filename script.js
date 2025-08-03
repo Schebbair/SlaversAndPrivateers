@@ -2,7 +2,6 @@
 const preguntaTexto = document.getElementById("pregunta-texto");
 const opcionesDiv = document.getElementById("opciones");
 const comodinesContainer = document.querySelector(".comodines-container");
-const comodinLlamadaBtn = document.getElementById('comodin-llamada');
 const contadorLlamadaDiv = document.getElementById('contador-llamada');
 const logoContainer = document.getElementById('logo-container');
 const ruletaContainer = document.getElementById('ruleta-container');
@@ -29,16 +28,28 @@ let comodinesUsados = {
 };
 let contadorLlamada = 60;
 let intervaloLlamada;
-const seccionesRuleta = [0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3];
-const anguloSeccion = 360 / seccionesRuleta.length;
+let estaGirando = false;
 let anguloTotal = 0;
+const anguloPorSeccion = 360 / 12; // Hay 12 secciones en la imagen
+const resultadosPorColor  = {
+    // Los ángulos son aproximados, puedes ajustarlos con la imagen real
+    rojo: 3,   // 3 opciones descartadas (la sección más pequeña)
+    azul: 1,   // 1 opción descartada
+    verde: 2,  // 2 opciones descartadas
+    negro: 0   // 0 opciones descartadas
+};
 //------------------------------------------------------FUNCIONES-------------------------------------------------
+//Función auxiliar
+function dormir(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 //Función cargar y mostrar preguntas
 async function iniciarJuego() {
     try{
 
         // 1.Cargar preguntas
-        const respuesta = await fetch("preguntas/preguntas1.json");
+        const respuesta = await fetch("preguntas/preguntas2.json");
         preguntas =await respuesta.json();
 
         // 2. Si hay preguntas mostrar
@@ -171,6 +182,9 @@ function usarComodin(comodin) {
         if (comodin === "IA"){
             //ya lo rellenaré de alguna forma
         }
+        if (comodin === 'Ruleta') {
+            resetearComodinRuleta();
+        }
     } else {
         // Si no está usado, lo marca como usado y ejecuta su función
         console.log(`Comodín ${comodin} activado.`);
@@ -242,7 +256,6 @@ function comodin5050(){
 //Llamada
 function comodinLlamada() {
     
-    pausarContadorLlamada();
     // 2. Desvanecer el logo y mostrar el contador
     // Para esto usaremos la clase 'comodin-activo' que ya creamos en el CSS
     logoContainer.classList.add('comodin-activo');
@@ -269,125 +282,115 @@ function iniciarContadorLlamada() {
 }
 
 // --- ESTA ES LA FUNCIÓN QUE FALTABA ---
-function pausarContadorLlamada() {
+async function pausarContadorLlamada() {
     clearInterval(intervaloLlamada);
     intervaloLlamada = null;
     console.log("El contador de la llamada ha sido pausado.");
+    await dormir(3000);
+    resetearComodinLlamada();
 }
 
 function resetearComodinLlamada() {
     // Paramos el contador si está en marcha
-    contadorLlamadaDiv.classList.remove("parpadeando");
-    pausarContadorLlamada();
-    
-    // 3. Reseteamos el estado visual
     logoContainer.classList.remove('comodin-activo');
     contadorLlamadaDiv.classList.remove("comodin-activo");
+    contadorLlamadaDiv.classList.remove("parpadeando");
     
     // 4. Reseteamos los valores del contador
     contadorLlamada = 60;
     contadorLlamadaDiv.textContent = contadorLlamada;
     
-    // 5. Marcamos el comodín como no usado
-    comodinesUsados['Llamada'] = false;
-    actualizarComodines();
-    
     console.log("Comodín 'Llamada' reseteado.");
+
 }
 //Ruleta
-function generarRuleta() {
-    ruletaGiratoria.innerHTML = ''; // Limpia el contenido anterior
-    seccionesRuleta.forEach((numero, index) => {
-        const seccion = document.createElement('div');
-        seccion.classList.add('ruleta-seccion');
-        seccion.style.transform = `rotate(${index * anguloSeccion}deg) skewY(${90 - anguloSeccion}deg)`;
-        seccion.style.backgroundColor = getRuletaColor(numero);
-        seccion.innerHTML = `<span style="transform: skewY(${-(90 - anguloSeccion)}deg) rotate(10deg);">${numero}</span>`;
-        ruletaGiratoria.appendChild(seccion);
-    });
+// Función principal del comodín Ruleta
+function comodinRuleta() {
+    ruletaContainer.classList.add('visible');
 }
-
-function getRuletaColor(numero) {
-    switch (numero) {
-        case 0: return 'red';
-        case 1: return 'green';
-        case 2: return 'blue';
-        case 3: return 'gold';
-        default: return 'gray';
+function girarRuleta(){
+    // Evita que la ruleta gire de nuevo si ya está girando
+    if (estaGirando) {
+        console.log("La ruleta ya está girando.");
+        return;
     }
-}
 
-// Función para girar la ruleta
-function girarRuleta() {
-    if (ruletaGiratoria.classList.contains('girando')) return;
+    estaGirando = true;
+    console.log("¡La ruleta comienza a girar!");
 
-    // Calcular el ángulo de giro aleatorio
-    const girosCompletos = 5; // Número de vueltas completas
-    const seccionGanadoraIndex = Math.floor(Math.random() * seccionesRuleta.length);
-    const anguloGanador = 360 - (seccionGanadoraIndex * anguloSeccion);
+    // Calcular el ángulo de giro
+    // Por ahora, solo haremos que dé unas cuantas vueltas.
+    // '5' vueltas completas * 360 grados + un ángulo aleatorio entre 0 y 360
+    const girosCompletos = 5; 
+    const seccionGanadoraIndex = Math.floor(Math.random() * 12);
+    const anguloGanador = 360 - (seccionGanadoraIndex * anguloPorSeccion);
     anguloTotal += girosCompletos * 360 + anguloGanador;
 
-    // Iniciar la animación
+    // Aplicar el giro y la animación de transición
+    ruletaGiratoria.style.transition = 'transform 6s ease-out'; // Duración total del giro
     ruletaGiratoria.style.transform = `rotate(${anguloTotal}deg)`;
-    ruletaGiratoria.classList.add('finalizando-giro');
 
-    // Al finalizar la animación
+    // Al finalizar la animación, reseteamos el estado
     setTimeout(() => {
-        ruletaGiratoria.classList.remove('finalizando-giro');
-        finalizarGiroRuleta(seccionGanadoraIndex);
-    }, 6000); // El tiempo de espera debe coincidir con la transición en CSS
+        estaGirando = false;
+        console.log("La ruleta se ha detenido.");
+        // Aquí iría la lógica para determinar el resultado
+        // por ahora, simplemente resetea el estilo
+        procesarResultadoRuleta(seccionGanadoraIndex);
+        // Puedes poner el resultado de la ruleta aquí
+    }, 6000); // El tiempo de espera debe coincidir con la transición en CSS (6s)
 }
-
-// Función para mostrar el resultado
-function finalizarGiroRuleta(seccionGanadoraIndex) {
-    const numeroGanador = seccionesRuleta[seccionGanadoraIndex];
-    resultadoRuletaDiv.textContent = `${numeroGanador} opciones eliminadas`;
-    resultadoRuletaDiv.style.display = 'block';
+function procesarResultadoRuleta(seccionIndex) {
+    // Mapeamos el índice de la sección a un color (ajústalo según tu imagen)
+    // Orden de colores: Rojo, Negro, Verde, Azul, Verde, Negro, Azul, Verde, Negro, Azul, Verde, Negro
+    const coloresEnRuleta = ['rojo', 'negro', 'verde', 'azul', 'verde', 'negro', 'azul', 'verde', 'negro', 'azul', 'verde', 'negro'];
     
-    // Llamada a la función que elimina las opciones
-    descartarOpcionesRuleta(numeroGanador);
-}
+    const colorGanador = coloresEnRuleta[seccionIndex];
+    const opcionesADescartar = resultadosPorColor[colorGanador];
+    
+    console.log(`El puntero ha caído en la sección ${seccionIndex} (${colorGanador}).`);
+    console.log(`El resultado es descartar ${opcionesADescartar} opciones.`);
 
-// Función para descartar opciones
+    descartarOpcionesRuleta(opcionesADescartar);
+    ruletaContainer.classList.remove("visible");
+
+
+}
 function descartarOpcionesRuleta(cantidad) {
-    if (cantidad === 0) return;
+    if (cantidad === 0) {
+        console.log("La ruleta ha caído en 0. No se descartan opciones.");
+        return; // No hace nada si la cantidad es 0
+    }
 
     const pregunta = preguntas[preguntaActualIndex];
-    const respuestaCorrectaIndex = pregunta.respuesta_correcta;
-    const botonesOpcion = Array.from(opcionesDiv.querySelectorAll('.opcion.visible:not(.descartada)'));
+    const respuestaCorrectaTexto = pregunta.opciones[pregunta.respuesta_correcta];
+    const botonesOpcion = Array.from(opcionesDiv.querySelectorAll('.opcion.visible'));
     
-    // Filtramos las opciones incorrectas
-    let opcionesIncorrectasVisibles = botonesOpcion.filter((boton, index) => index !== respuestaCorrectaIndex);
+    // Filtramos las opciones incorrectas y que aún no han sido descartadas
+    let opcionesIncorrectasVisibles = botonesOpcion.filter(boton => boton.textContent !== respuestaCorrectaTexto && !boton.classList.contains('descartada'));
 
-    for (let i = 0; i < cantidad && opcionesIncorrectasVisibles.length > 0; i++) {
+    // Si la cantidad de opciones incorrectas disponibles es menor que la cantidad a descartar,
+    // solo descartamos las que quedan.
+    const aDescartar = Math.min(cantidad, opcionesIncorrectasVisibles.length);
+
+    console.log(`Descartando ${aDescartar} opciones...`);
+
+    for (let i = 0; i < aDescartar; i++) {
         const randomIndex = Math.floor(Math.random() * opcionesIncorrectasVisibles.length);
         const botonAEliminar = opcionesIncorrectasVisibles[randomIndex];
+        
+        // Añadimos la clase 'descartada' y deshabilitamos los clics
         botonAEliminar.classList.add('descartada');
         botonAEliminar.style.pointerEvents = 'none';
+
+        // Eliminamos el botón del array para no volver a elegirlo
         opcionesIncorrectasVisibles.splice(randomIndex, 1);
     }
 }
-
-// Función principal del comodín Ruleta
-function comodinRuleta() {
-    if (comodinesUsados['Ruleta']) {
-        console.log("El comodín 'Ruleta' ya está activo. Pulsa 'r' para girar.");
-        return;
-    }
-    
-    comodinesUsados['Ruleta'] = true;
-    actualizarComodines();
-    generarRuleta();
-    ruletaContainer.classList.remove('oculta');
-    console.log("Comodín 'Ruleta' activado. Pulsa 'r' para girar.");
-}
-
-// Función para resetear el comodín de la ruleta
 function resetearComodinRuleta() {
-    ruletaContainer.classList.add('oculta');
-    resultadoRuletaDiv.style.display = 'none';
-    comodinesUsados['Ruleta'] = false;
-    actualizarComodines();
+    ruletaContainer.classList.remove('visible');
+    // ... (otras líneas de código) ...
+    
     // Restablecer opciones descartadas
     const botonesOpcion = opcionesDiv.querySelectorAll('.opcion');
     botonesOpcion.forEach(boton => {
@@ -430,9 +433,10 @@ document.addEventListener("keydown",(evento)=>{
             iniciarContadorLlamada();
         }
     }
-    if (evento.key === 'r' && comodinesUsados['Ruleta']) {
+    if (evento.key === "r" && comodinesUsados["Ruleta"] && !estaGirando){
         girarRuleta();
     }
+
 
 })
 //------------------------------------------------------CLICS-------------------------------------------------
